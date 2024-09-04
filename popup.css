@@ -3,3 +3,28 @@
     width: 250;
     font-size: 0.8rem;
 }
+
+.container{
+    display: flex;
+    justify-content: center;
+    height: 50px;
+
+}
+
+button{
+    border: none;
+    background-color: hsla(0, 0%, 57%,);
+    font-family: monospace;
+    width: 100px;
+    border-radius: 3px;
+    transform: scale(0.8);
+    transition: all 0.12s ease-in;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+button:hover{
+    box-shadow: 3px 3px hsl(0, 0%, 70%);
+    border-radius: 5px;
+    transform: scale(0.9);
+}
