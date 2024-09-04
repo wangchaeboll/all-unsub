@@ -5,11 +5,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if(currentTab && currentTab.url.includes('youtube.com')){
             console.log("you are in youtube tab")
-            container[0].innerHTML = `<i>Hello youtube</i>`
+            if(currentTab.url === "https://www.youtube.com/feed/channels"){
+                console.log("tekan button untuk unfollow all")
+            }else{
+                console.log("stay la dekat homepage kak..")
+            }
+
         }else{
-            console.log(container)
-            container[0].innerText = "This is not a youtube tab"
-            console.log("you are not in youtube tabs")
+            container[0].classList.add("more")
+
+            container[0].innerHTML = "<i>This is not a youtube tab</i>"
         }
     })
 })
