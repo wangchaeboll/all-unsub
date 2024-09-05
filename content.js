@@ -11,24 +11,29 @@ window.addEventListener("load", () => {
 
     // function yang trigger promise
     const dropBox = () => {
-        const dropBoxx = document.querySelector("body > ytd-app > ytd-popup-container > tp-yt-iron-dropdown")
-        return new Promise( (res,rej) => {
-            if (dropBoxx && !dropBoxx.hasAttribute("aria-hidden") ){
-                res("first wave succeed")
-            }else{
-                rej("first wave failed")
-            }
+        return new Promise( resolve => {
+            setTimeout(() => { 
+                const dropBoxx = document.querySelector("body > ytd-app > ytd-popup-container > tp-yt-iron-dropdown")
+                if (dropBoxx && !dropBoxx.hasAttribute("aria-hidden") ){
+                    resolve("first wave succeed")
+                }else{
+                    return
+                }
+            })
         })
     }
 
     const konfurm = () => {
         const muncul = document.getElementById("main")
-        return new Promise((res, rej) => {
-            if (muncul && !muncul.hasAttribute("aria-hidden") ){
-                res("second wave succeed")
-            }else{
-                rej("second wave failed")
-            }
+        return new Promise(res => {
+            setTimeout ( () => {
+                const muncul = document.getElementById("main")
+                if (muncul && !muncul.hasAttribute("aria-hidden") ){
+                    resolve("second wave succeed")
+                }else{
+                    return
+                }
+            }, 1500)
         })
     }
 
@@ -38,12 +43,11 @@ window.addEventListener("load", () => {
         for (const elem of alam){
             // unsub tray
             elem.querySelector("#notification-preference-button > ytd-subscription-notification-toggle-button-renderer-next > yt-button-shape > button > yt-touch-feedback-shape > div > div.yt-spec-touch-feedback-shape__fill").click();
-            const resultsatu = await dropBox()
-            // 4th child
+            await dropBox()
             document.querySelector("#items > ytd-menu-service-item-renderer:nth-child(4) > tp-yt-paper-item").click()
-            // const resultdua = await konfurm()
+            await konfurm()
             // confirm 
-            // document.querySelector("#confirm-button > yt-button-shape > button > yt-touch-feedback-shape > div").click()
+            document.querySelector("#confirm-button > yt-button-shape > button > yt-touch-feedback-shape > div").click()
 
 
         }
