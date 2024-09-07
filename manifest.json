@@ -25,7 +25,7 @@
             "128": "images/icon128.png"
         }
     },
-    "permissions": ["activeTab", "contextMenus", "tabs", "scripting"],
+    "permissions": ["activeTab", "contextMenus", "tabs", "scripting", "notifications"],
     "host_permissions": [
         "https://www.youtube.com/*"
     ]

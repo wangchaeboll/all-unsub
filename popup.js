@@ -17,4 +17,25 @@ document.addEventListener("DOMContentLoaded", () => {
             container[0].innerHTML = "<i>This is not a youtube tab</i>"
         }
     })
+
+    chrome.runtime.onMessage,addEventListener( function(request, sender, sendResponse) {
+        
+        var notifObject = {
+            type: 'basic',
+            iconUrl: 'icon48.png',
+            title: 'Finish Operation',
+            message: 'Hello sir, your entire subscriptions is already been unsubscribe.'
+        }
+
+        if(request.method === "finish"){
+
+            console.log(sender.tab ? "hello this is from " + sender.tab : "failed")
+            
+            chrome.notifications.create('settledOperations' , notifObject);
+
+            sendResponse({ patahbalik : "dah notify."})
+        }
+    })
+
+
 })

@@ -175,10 +175,12 @@ window.addEventListener("load" , () => {
                 // confirm 
                 document.querySelector("#confirm-button > yt-button-shape > button > yt-touch-feedback-shape > div").click()
     
-                await delay(2000);
+                await delay(200);
             }
     
-            alert("OPerations finished")
+            chrome.runtime.sendMessage({ method : "finish" })
     }
+
+    chrome.onUpdate.onMessage
 
 })
