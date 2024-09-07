@@ -3,6 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const currentTab = tabs[0]
         const container = document.getElementsByClassName("container")
 
+        const butUnsub = document.getElementById("button-list");
+        const butHome = document.getElementById("button-home");
+        const butPostCom = document.getElementById("button-post");
+
+        butUnsub.addEventListener("click", () => {
+            console.log("hello")
+        })
+
         if(currentTab && currentTab.url.includes('youtube.com')){
             console.log("you are in youtube tab")
             if(currentTab.url === "https://www.youtube.com/feed/channels"){
@@ -18,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
-    chrome.runtime.onMessage,addEventListener( function(request, sender, sendResponse) {
+    chrome.runtime.onMessage.addEventListener( function(request, sender, sendResponse) {
         
         var notifObject = {
             type: 'basic',

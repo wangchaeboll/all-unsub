@@ -181,6 +181,6 @@ window.addEventListener("load" , () => {
             chrome.runtime.sendMessage({ method : "finish" })
     }
 
-    chrome.onUpdate.onMessage
+    // chrome.onUpdate.onMessage
 
 })
