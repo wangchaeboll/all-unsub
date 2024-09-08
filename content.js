@@ -181,6 +181,11 @@ window.addEventListener("load" , () => {
             chrome.runtime.sendMessage({ method : "finish" })
     }
 
-    // chrome.onUpdate.onMessage
+    
+})
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if(message.method === 'startnow'){
+        console.log("hello")
+    }
 })
