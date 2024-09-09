@@ -179,17 +179,16 @@ window.addEventListener("load" , () => {
     }
 
 
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+        // if(message.action === 'startnow'){
+        //     console.log("hello")
+        // }
+        switch (message.action){
+            case 'startnow':
+            console.log("hello")
+            break
+        }
+        return true
+    })
     
-})
-
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    // if(message.action === 'startnow'){
-    //     console.log("hello")
-    // }
-    switch (message.action){
-        case 'startnow':
-        console.log("hello")
-        break
-    }
-    return true
 })
