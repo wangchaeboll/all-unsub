@@ -2,20 +2,26 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.tabs.query({active : true, currentWindow: true } , (tabs) => {
         const currentTab = tabs[0]
         const container = document.getElementsByClassName("container")
-
         const butUnsub = document.getElementById("button-list");
         const butHome = document.getElementById("button-home");
         const butPostCom = document.getElementById("button-post");
+
+        butUnsub.addEventListener("click", () => {
+            console.log("fuhh")
+            chrome.tabs.sendMessage(currentTab.id, { action : "startnow"}, function(response) {
+                if (chrome.runtime.lastError) {
+                  console.error("Message sending failed:", chrome.runtime.lastError);
+                } else {
+                  console.log("Response received:", response);
+                }
+            })
+        })
 
         
         if(currentTab && currentTab.url.includes('youtube.com')){
             console.log("you are in youtube tab")
             if(currentTab.url === "https://www.youtube.com/feed/channels"){
                 console.log("tekan button untuk unfollow all")
-                butUnsub.addEventListener("click", () => {
-                    console.log("fuhh")
-                    chrome.runtime.sendMessage({ action : 'startnow'})
-                })
             }else{
                 console.log("stay la dekat homepage kak..")
             }
