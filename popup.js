@@ -6,13 +6,27 @@ document.addEventListener("DOMContentLoaded", () => {
         const butHome = document.getElementById("button-home");
         const butPostCom = document.getElementById("button-post");
 
+        butHome.addEventListener("click", () =>{
+            chrome.tabs.sendMessage(currentTab.id, { action : "gohome"})
+        } )
+
+        butPostCom.addEventListener("click", () =>{
+            chrome.tabs.sendMessage(currentTab.id, { action : "goCom"})
+        } )
+
         butUnsub.addEventListener("click", () => {
             console.log("fuhh")
             chrome.tabs.sendMessage(currentTab.id, { action : "startnow"}, function(response) {
                 if (chrome.runtime.lastError) {
                   console.error("Message sending failed:", chrome.runtime.lastError);
                 } else {
-                  console.log("Response received:", response);
+                        chrome.notifications.create('beginOperations' , {
+                        type: 'basic',
+                        iconUrl: 'images/icon48.png',
+                        title: 'Finish Operation',
+                        message: 'Hello sir, your entire subscriptions under going un-subscribing process.'
+                        })
+                    console.log("ni boleh ja")
                 }
             })
         })
@@ -32,23 +46,5 @@ document.addEventListener("DOMContentLoaded", () => {
             container[0].innerHTML = "<i>This is not a youtube tab</i>"
         }
 
-        // chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
-            
-        //     var notifObject = {
-        //         type: 'basic',
-        //         iconUrl: 'icon48.png',
-        //         title: 'Finish Operation',
-        //         message: 'Hello sir, your entire subscriptions is already been unsubscribe.'
-        //     }
-    
-        //     if(request.method === "finish"){
-    
-        //         console.log(sender.tab ? "hello this is from " + sender.tab : "failed")
-                
-        //         chrome.notifications.create('settledOperations' , notifObject);
-    
-        //         sendResponse({ patahbalik : "dah notify."})
-        //     }
-        // })
     })
 })

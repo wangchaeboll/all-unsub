@@ -128,7 +128,9 @@
 window.addEventListener("load" , () => {
 
     const nodeList = document.querySelectorAll("#grid-container > ytd-channel-renderer") 
-    
+    //for trial use 
+    const nud = [nodeList[0], nodeList[1], nodeList[2]]
+
     function delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
       }
@@ -164,7 +166,7 @@ window.addEventListener("load" , () => {
     
     const start = async () => {
     
-            for (const elem of nodeList){
+            for (const elem of nud){
                 elem.querySelector("#notification-preference-button > ytd-subscription-notification-toggle-button-renderer-next > yt-button-shape > button > yt-touch-feedback-shape > div > div.yt-spec-touch-feedback-shape__fill").click();
                 await dropBox()
                 document.querySelector("#items > ytd-menu-service-item-renderer:nth-child(4) > tp-yt-paper-item").click()
@@ -176,20 +178,27 @@ window.addEventListener("load" , () => {
             }
     
             // chrome.runtime.sendMessage({ method : "finish" })
+            chrome.notifications.create('settledOperations' , {
+                type: 'basic',
+                iconUrl: 'images/icon48.png',
+                title: 'Finish Operation',
+                message: 'Hello sir, the operation finished.'
+                })
     }
 
 
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+        // if(message.action === 'startnow'){
+        //     console.log("hello")
+        // }
+        switch (message.action){
+            case 'startnow':
+            console.log("hello")
+            // start()
+            sendResponse({status : "complete"})
+            break
+        }
+    })
     
 })
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    // if(message.action === 'startnow'){
-    //     console.log("hello")
-    // }
-    switch (message.action){
-        case 'startnow':
-        console.log("hello")
-        sendResponse(null)
-        break
-    }
-})
