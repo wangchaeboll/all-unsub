@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("tekan button untuk unfollow all")
                 butUnsub.addEventListener("click", () => {
                     console.log("fuhh")
-                    chrome.runtime.sendMessage({ method : 'startnow'})
+                    chrome.runtime.sendMessage({ action : 'startnow'})
                 })
             }else{
                 console.log("stay la dekat homepage kak..")
@@ -26,23 +26,23 @@ document.addEventListener("DOMContentLoaded", () => {
             container[0].innerHTML = "<i>This is not a youtube tab</i>"
         }
 
-        chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
+        // chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
             
-            var notifObject = {
-                type: 'basic',
-                iconUrl: 'icon48.png',
-                title: 'Finish Operation',
-                message: 'Hello sir, your entire subscriptions is already been unsubscribe.'
-            }
+        //     var notifObject = {
+        //         type: 'basic',
+        //         iconUrl: 'icon48.png',
+        //         title: 'Finish Operation',
+        //         message: 'Hello sir, your entire subscriptions is already been unsubscribe.'
+        //     }
     
-            if(request.method === "finish"){
+        //     if(request.method === "finish"){
     
-                console.log(sender.tab ? "hello this is from " + sender.tab : "failed")
+        //         console.log(sender.tab ? "hello this is from " + sender.tab : "failed")
                 
-                chrome.notifications.create('settledOperations' , notifObject);
+        //         chrome.notifications.create('settledOperations' , notifObject);
     
-                sendResponse({ patahbalik : "dah notify."})
-            }
-        })
+        //         sendResponse({ patahbalik : "dah notify."})
+        //     }
+        // })
     })
 })

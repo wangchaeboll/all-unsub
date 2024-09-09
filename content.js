@@ -129,9 +129,6 @@ window.addEventListener("load" , () => {
 
     const nodeList = document.querySelectorAll("#grid-container > ytd-channel-renderer") 
     
-    
-    console.log(nodeList)
-    
     function delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
       }
@@ -178,14 +175,21 @@ window.addEventListener("load" , () => {
                 await delay(200);
             }
     
-            chrome.runtime.sendMessage({ method : "finish" })
+            // chrome.runtime.sendMessage({ method : "finish" })
     }
+
 
     
 })
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if(message.method === 'startnow'){
+    // if(message.action === 'startnow'){
+    //     console.log("hello")
+    // }
+    switch (message.action){
+        case 'startnow':
         console.log("hello")
+        break
     }
+    return true
 })
