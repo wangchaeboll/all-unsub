@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         type: 'basic',
                         iconUrl: 'images/icon48.png',
                         title: 'Finish Operation',
-                        message: 'Hello sir, your entire subscriptions under going un-subscribing process.'
+                        message: "Hello, sir. Your entire subscription list is currently being processed for unsubscription."
                         })
                     console.log("ni boleh ja")
                 }
@@ -36,8 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("you are in youtube tab")
             if(currentTab.url === "https://www.youtube.com/feed/channels"){
                 console.log("tekan button untuk unfollow all")
+            }else if(currentTab.url === "https://www.youtube.com/"){
+                butHome.removeEventListener("click", (e) => {e.preventDefault()})
+                
+            }else if(currentTab.url === "https://www.youtube.com/feed/channels"){
+                
             }else{
                 console.log("stay la dekat homepage kak..")
+                
             }
 
         }else{
