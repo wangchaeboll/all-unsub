@@ -5,17 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const butUnsub = document.getElementById("button-list");
         const butHome = document.getElementById("button-home");
         const butPostCom = document.getElementById("button-post");
+        
+        const goHome = () => {chrome.tabs.sendMessage(currentTab.id, { action : "gohome"})}
+        butHome.addEventListener("click", goHome)
 
-        butHome.addEventListener("click", () =>{
-            chrome.tabs.sendMessage(currentTab.id, { action : "gohome"})
-        } )
+        const goCom = () => {chrome.tabs.sendMessage(currentTab.id, { action : "gocom"})}
+        butPostCom.addEventListener("click", goCom)
 
-        butPostCom.addEventListener("click", () =>{
-            chrome.tabs.sendMessage(currentTab.id, { action : "goCom"})
-        } )
-
-        butUnsub.addEventListener("click", () => {
-            console.log("fuhh")
+        const startNow = () => {
             chrome.tabs.sendMessage(currentTab.id, { action : "startnow"}, function(response) {
                 if (chrome.runtime.lastError) {
                   console.error("Message sending failed:", chrome.runtime.lastError);
@@ -29,17 +26,26 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.log("ni boleh ja")
                 }
             })
-        })
 
+        }
+
+        const goList = () => {chrome.tabs.sendMessage(currentTab.id, { action : "golist"})}
+        butUnsub.addEventListener("click", goList)
+
+        
         
         if(currentTab && currentTab.url.includes('youtube.com')){
             console.log("you are in youtube tab")
             if(currentTab.url === "https://www.youtube.com/feed/channels"){
                 console.log("tekan button untuk unfollow all")
+                butUnsub.innerText = "Start"
+                butUnsub.addEventListener("click", startNow)
+
             }else if(currentTab.url === "https://www.youtube.com/"){
-                butHome.removeEventListener("click", (e) => {e.preventDefault()})
                 
-            }else if(currentTab.url === "https://www.youtube.com/feed/channels"){
+
+            }else if(currentTab.url === "https://www.youtube.com/@Chae_boll/community"){
+                console.log("anda dekat community post")
                 
             }else{
                 console.log("stay la dekat homepage kak..")

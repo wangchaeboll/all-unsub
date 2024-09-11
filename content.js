@@ -129,7 +129,7 @@ window.addEventListener("load" , () => {
 
     const nodeList = document.querySelectorAll("#grid-container > ytd-channel-renderer") 
     //for trial use 
-    const nud = [nodeList[0], nodeList[1], nodeList[2]]
+    // const nud = [nodeList[0], nodeList[1], nodeList[2]]
 
     function delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -166,7 +166,7 @@ window.addEventListener("load" , () => {
     
     const start = async () => {
     
-            for (const elem of nud){
+            for (const elem of nodeList){
                 elem.querySelector("#notification-preference-button > ytd-subscription-notification-toggle-button-renderer-next > yt-button-shape > button > yt-touch-feedback-shape > div > div.yt-spec-touch-feedback-shape__fill").click();
                 await dropBox()
                 document.querySelector("#items > ytd-menu-service-item-renderer:nth-child(4) > tp-yt-paper-item").click()
@@ -193,10 +193,28 @@ window.addEventListener("load" , () => {
         // }
         switch (message.action){
             case 'startnow':
-            console.log("hello")
-            // start()
-            sendResponse({status : "complete"})
-            break
+                console.log("hello")
+                // start()
+                sendResponse({status : "complete"})
+            break;
+
+            case 'gohome':
+                window.location.href = "https://www.youtube.com/"
+                break;
+
+            case 'gocom':
+                window.location.href = 'https://www.youtube.com/@Chae_boll/community'
+                // window.open('https://www.google.com', '_blank');
+                break;
+
+            case 'golist':
+                window.location.href = 'https://www.youtube.com/feed/channels'
+                // window.open('https://www.google.com', '_blank');
+                break;
+
+            default:
+                console.log("no such case");
+                break;
         }
     })
     
